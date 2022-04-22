@@ -16,7 +16,7 @@ public class Controlador2 {
     public static final String GREEN = "\033[0;32m";
     static final String urlBase = "/controlador2";
     @Autowired
-    List<Ciudad> listaCiudad = new ArrayList<Ciudad>();
+    List<Ciudad> listaCiudad = new ArrayList<>();
 
     @Autowired
     private Persona persona;
@@ -40,12 +40,11 @@ public class Controlador2 {
     @GetMapping(path = urlBase + "/getCiudad")
     public String getCiudad(){
         System.out.println(GREEN + "GET: " + urlBase + "/getCiudad");
-        String jsonResponse = "[";
-        Iterator<Ciudad> ciudadIterator = listaCiudad.iterator();
-        while(ciudadIterator.hasNext()){
-            jsonResponse += ciudadIterator.next().toString() + ",";
+        String jsonResponse = "{\"ciudades\":[";
+        for (Ciudad ciudad : listaCiudad) {
+            jsonResponse += ciudad.toString() + ",";
         }
-        jsonResponse = jsonResponse.substring(0,jsonResponse.length()-1) + "]";
+        jsonResponse = jsonResponse.substring(0,jsonResponse.length()-1) + "]}";
         return jsonResponse;
     }
 

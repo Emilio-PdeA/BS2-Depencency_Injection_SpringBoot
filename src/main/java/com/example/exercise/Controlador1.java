@@ -34,7 +34,7 @@ public class Controlador1 {
     public ResponseEntity<String> addPersona(@RequestBody Persona persona){
         contr2.setPersona(persona);
         System.out.println(CYAN +"POST: " + urlBase + "/addPersona");
-        return new ResponseEntity<String>("{\"msg\":\"Persona agregada\"}", HttpStatus.OK);
+        return new ResponseEntity<>(contr2.getPerson(), HttpStatus.OK);
     }
 
     /*
@@ -47,7 +47,7 @@ public class Controlador1 {
     public ResponseEntity<String> addCiudad(@RequestBody Ciudad ciudad){
         System.out.println(CYAN + "POST: " + urlBase + "/addCiudad");
         contr2.addCiudad(ciudad);
-    return new ResponseEntity<String>("{\"msg\":\"Ciudad agregada!\"}", HttpStatus.OK);
+    return new ResponseEntity<>(contr2.getCiudad(), HttpStatus.OK);
     }
 
     public Controlador1(){}
