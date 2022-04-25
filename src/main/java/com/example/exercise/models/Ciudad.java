@@ -1,4 +1,4 @@
-package com.example.exercise;
+package com.example.exercise.models;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,6 @@ public class Ciudad {
 
     private String nombre;
     private Integer numeroHabitantes;
-    private String contenido;
 
     public Ciudad (){}
     public Ciudad(String nombre, Integer numeroHabitantes){
@@ -18,13 +17,6 @@ public class Ciudad {
         this.numeroHabitantes = numeroHabitantes;
     }
 
-    public String getContenido() {
-        return contenido;
-    }
-
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
-    }
 
     public String getNombre() {
         return nombre;
@@ -40,15 +32,5 @@ public class Ciudad {
 
     public void setNumeroHabitantes(Integer numeroHabitantes) {
         this.numeroHabitantes = numeroHabitantes;
-    }
-
-    //FUNCTIONS
-
-    @Override
-    public String toString() {
-        return "{" +
-                "\"nombre\":\"" + nombre + '\"' +
-                ", \"numeroHabitantes\":" + numeroHabitantes +
-                '}';
     }
 }

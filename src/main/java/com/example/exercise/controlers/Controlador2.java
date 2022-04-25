@@ -1,11 +1,12 @@
-package com.example.exercise;
+package com.example.exercise.controlers;
 
+import com.example.exercise.models.Ciudad;
+import com.example.exercise.models.Persona;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -27,9 +28,9 @@ public class Controlador2 {
      * Response: Object<Persona>
      */
     @GetMapping(urlBase + "/getPersona")
-    public String getPerson(){
+    public Persona getPerson(){
         System.out.println(GREEN + "GET: " + urlBase + "/getPersona");
-        return persona.toString();
+        return persona;
     }
 
     /*
@@ -38,14 +39,9 @@ public class Controlador2 {
      * Response: List<Ciudad>
      */
     @GetMapping(path = urlBase + "/getCiudad")
-    public String getCiudad(){
+    public List<Ciudad> getCiudad(){
         System.out.println(GREEN + "GET: " + urlBase + "/getCiudad");
-        String jsonResponse = "{\"ciudades\":[";
-        for (Ciudad ciudad : listaCiudad) {
-            jsonResponse += ciudad.toString() + ",";
-        }
-        jsonResponse = jsonResponse.substring(0,jsonResponse.length()-1) + "]}";
-        return jsonResponse;
+        return listaCiudad;
     }
 
     public void setPersona(Persona pers){

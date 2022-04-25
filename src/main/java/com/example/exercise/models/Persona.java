@@ -1,4 +1,4 @@
-package com.example.exercise;
+package com.example.exercise.models;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -42,12 +42,4 @@ public class Persona {
         this.edad = edad;
     }
 
-    @Override
-    public String toString() {
-    return "{"
-        + "\"nombre\":\"" + nombre + '\"' +
-        ", \"ciudad\":\"" + ciudad + '\"' +
-        ", \"edad\":" + edad +
-        '}';
-    }
 }

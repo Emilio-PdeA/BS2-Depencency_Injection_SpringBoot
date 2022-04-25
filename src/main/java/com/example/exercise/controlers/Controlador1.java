@@ -1,19 +1,20 @@
-package com.example.exercise;
+package com.example.exercise.controlers;
 
-import org.jetbrains.annotations.NotNull;
+import com.example.exercise.models.Ciudad;
+import com.example.exercise.models.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/controlador1")
 @Component
 //@Scope(value = "prototype")
 public class Controlador1 {
@@ -22,16 +23,14 @@ public class Controlador1 {
     static final String urlBase = "/controlador1";
     @Autowired
     Controlador2 contr2;
-
-
     /*
      * METHOD: POST
      * Test URL: localhost:8080/controlador1/addPersona
      * BODY (JSON): {"nombre":$nombre, "ciudad":$ciudad, "edad":$edad}
      * RESPONSE: {"msg":"Persona agregada"}
      * */
-    @PostMapping(path = urlBase + "/addPersona", consumes = "application/json")
-    public ResponseEntity<String> addPersona(@RequestBody Persona persona){
+    @PostMapping(path = "/addPersona", consumes = "application/json")
+    public ResponseEntity<Persona> addPersona(@RequestBody Persona persona){
         contr2.setPersona(persona);
         System.out.println(CYAN +"POST: " + urlBase + "/addPersona");
         return new ResponseEntity<>(contr2.getPerson(), HttpStatus.OK);
@@ -43,11 +42,11 @@ public class Controlador1 {
      * BODY (JSON): {"nombre":$nombre, "numeroHabitantes":#numHabitantes}
      * RESPONSE: {"msg":"Ciudad Agregada"}
      * */
-    @PostMapping(path = urlBase + "/addCiudad", consumes = "application/json")
-    public ResponseEntity<String> addCiudad(@RequestBody Ciudad ciudad){
+    @PostMapping(path = "/addCiudad", consumes = "application/json")
+    public ResponseEntity<List<Ciudad>> addCiudad(@RequestBody Ciudad ciudad){
         System.out.println(CYAN + "POST: " + urlBase + "/addCiudad");
         contr2.addCiudad(ciudad);
-    return new ResponseEntity<>(contr2.getCiudad(), HttpStatus.OK);
+    return new ResponseEntity<>(contr2.listaCiudad, HttpStatus.OK);
     }
 
     public Controlador1(){}
